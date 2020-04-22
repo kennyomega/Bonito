@@ -123,6 +123,11 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_color_management=true
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.protected_contents=true
 
+# Include Google apps by default
+ifneq ($(TARGET_BUILD_GAPPS),false)
+$(call inherit-product-if-exists, vendor/gapps/gapps.mk)
+endif
+
 # Set thermal warm reset
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.thermal_warmreset = true \
